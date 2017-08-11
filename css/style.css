@@ -20,6 +20,9 @@ body, html {
     background-image: url("/img/login.jpg");
     min-height: 95%;  
 }
+#message_list img {
+    border-radius: 25px;
+}
 .backLogin{
 padding-left: 15px;
 padding-right: 15px;

@@ -14,8 +14,29 @@ unset($_SESSION['id']);
 header("Location:login.php");
 }
 include_once 'head.php';
-?>
 
+?>
+<title>Profile</title>
+<script>
+    function printTime(){
+        var d = new Date();
+        var hours=d.getHours();
+        hours = ("0" + hours).slice(-2);
+        var mins= d.getMinutes();
+        mins = ("0" + mins).slice(-2);
+        var secs=d.getSeconds();
+        secs = ("0" + secs).slice(-2);
+        var time=document.getElementById("time");
+        time.style.color = "gray";
+        time.style.fontSize = "25px";
+        time.style.marginTop = "4px";
+        time.style.fontFamily = "Track";
+        time.innerHTML=hours+":"+mins+":"+secs;
+
+    }
+    setInterval(printTime, 1000);
+</script>
+</head>
 <body onload="get_statistics()">
 
 <!-- Links (sit on top) -->
@@ -80,12 +101,16 @@ include_once 'head.php';
                   <td id="post_quantity"></td>
                 </tr>
                  <tr>
+                  <th class=" w3-center">Last post was created by:</th>
+                  <td id="last_post_user"></td>
+                </tr>
+                 <tr>
                   <th class=" w3-center">Last post was created at:</th>
-                  <td >Smith</td>
+                  <td id="last_post_created_at"></td>
                 </tr>
                  <tr>
                   <th class=" w3-center">Current time:</th>
-                  <td >Smith</td>
+                  <td ><span id="time"></span></td>
                 </tr>
                 </table>	
 </div>
@@ -104,7 +129,7 @@ include_once 'head.php';
                             $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 							while ($row = pg_fetch_array($result, null, PGSQL_ASSOC)) {
                                 
-								echo "<div class='post_item'><img width='40' src='data:image;base64,".$row['image']."'/><p >".$row['name']."</p>";
+								echo "<div class='post_item'><img width='50' src='data:image;base64,".$row['image']."'/><p >".$row['name']."</p>";
                                 echo "<span>".$row['message']."</span><p>".$row['created_at']."</p></div><hr>";
 						
 							}
@@ -142,6 +167,7 @@ include_once 'head.php';
             $('<div class="post_item">').html("<img width='40' src='"+"<?php echo $_SESSION['image']?>"+"'/><p>"+name+"</p><span>"+message+"</span><p>"+data['created_at']+"</p></div><hr>").prependTo('#message_list');
             limit+=1;
             get_statistics();
+            $('#message').val('');
         },
         error: function(result) {
             alert('error');
@@ -161,7 +187,7 @@ $(window).scroll(function() {
         success: function(data) {
             console.log(data);
             for(var i=0;i<data.length;i++){
-              $('<div class="post_item">').html("<img width='40' src='data:image;base64,"+data[i]['image']+"'/><p>"+data[i]['name']+"</p><span>"+data[i]['message']+"</span><p>"+data[i]['created_at']+"</p></div><hr>").appendTo('#message_list');
+              $('<div class="post_item">').html("<img width='50' src='data:image;base64,"+data[i]['image']+"'/><p>"+data[i]['name']+"</p><span>"+data[i]['message']+"</span><p>"+data[i]['created_at']+"</p></div><hr>").appendTo('#message_list');
             }
             
         }
@@ -182,6 +208,8 @@ function get_statistics(){
             console.log(data);
             $('#post_quantity').text(data['post_quantity']['post_quantity']);
             $('#users_quantity').text(data['users_quantity']['users_quantity']);
+            $('#last_post_created_at').text(data['last_post_created_at']);
+            $('#last_post_user').text(data['last_post_user']);
             }
             
         });
