@@ -11,28 +11,11 @@ unset($_SESSION['is_login_in']);
 unset($_SESSION['user_email']);
 unset($_SESSION['username']);
 unset($_SESSION['id']);
-    header("Location: /login.php");
+header("Location:login.php");
 }
 include_once 'head.php';
 ?>
 
-<style>
-body, html {
-    height: 100%;
-    font-family: "Inconsolata", sans-serif;
-}
-.bgimg {
-    background-position: center;
-    background-size: cover;
-    background-image: url("/img/back.jpg");
-    min-height: 95%;
-}
-.menu {
-    display: none;
-}
-    .post_item:hover {background-color: #F8F1F1;
-border-radius: 10px;}
-</style>
 <body>
 
 <!-- Links (sit on top) -->
@@ -48,7 +31,7 @@ border-radius: 10px;}
       <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
     </div>
     <div class="w3-col s3">
-     <form action="index.php"  method="post">
+     <form action="profile.php"  method="post">
      <?php echo "Hello,".$_SESSION['username']."!"; ?>
     <input type="submit" name="log_out" value="LOG OUT">
     </form>
