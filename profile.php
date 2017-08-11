@@ -13,16 +13,9 @@ unset($_SESSION['username']);
 unset($_SESSION['id']);
     header("Location: /login.php");
 }
+include_once 'head.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 body, html {
     height: 100%;

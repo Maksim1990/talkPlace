@@ -1,0 +1,15 @@
+body, html {
+    height: 100%;
+    font-family: "Inconsolata", sans-serif;
+}
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("/img/back.jpg");
+    min-height: 95%;
+}
+.menu {
+    display: none;
+}
+    .post_item:hover {background-color: #F8F1F1;
+border-radius: 10px;}

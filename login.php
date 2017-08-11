@@ -7,14 +7,14 @@ if(isset($_POST['submit']));
 
     $email =  htmlentities($_POST['email']);
     $password =  htmlentities($_POST['pass']);
-  $password= md5($password);
-$dbconn = pg_connect("host=localhost dbname=users user=postgres password=")
+    $password= md5($password);
+    $dbconn = pg_connect("host=localhost dbname=users user=postgres password=")
     or die('Could not connect: ' . pg_last_error());
    
-if ( empty($email) || empty($password)){
+    if ( empty($email) || empty($password)){
     
-}
-else{
+    }
+    else{
    // Login of the user
     $logins = "SELECT * FROM users WHERE email='$email' AND password='$password'   LIMIT 1";
     $result= pg_query($logins);
@@ -23,37 +23,25 @@ else{
    if (pg_num_rows($result)>0)
    { $row = pg_fetch_assoc($result);
        // create seesion for login in
-       $_SESSION['is_login_in'] = true;
+      $_SESSION['is_login_in'] = true;
       $_SESSION['username']=$row['name'];
       $_SESSION['id']=$row['id'];
       $_SESSION['image']="data:image;base64,".$row['image'];
-       $_SESSION['user_email'] = $email;
-  header("Location: profile.php");
-   
+      $_SESSION['user_email'] = $email;
+      header("Location: profile.php");
    }
    
    else{
        echo "<script>alert('Provided email or password is invalid!!!')</script>";
-   }
+        }
 
    }
 } 
-
+include_once 'head.php';
 ?>
-
-      <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Login</title>
-
-
 </head>
-
-<body id="login">
-
+<body>
 <div class="w3-row w3-padding-64">
   <div class="w3-col s4  w3-center"><p></p></div>
   <div class="w3-col s4 w3-center">
@@ -80,10 +68,5 @@ else{
   </div>
   <div class="w3-col s4 w3-center"></div>
 </div>
-
-
-
-	
-
 </body>
 </html>
