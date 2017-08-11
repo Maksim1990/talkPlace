@@ -16,7 +16,7 @@ header("Location:login.php");
 include_once 'head.php';
 ?>
 
-<body>
+<body onload="get_statistics()">
 
 <!-- Links (sit on top) -->
 <div class="w3-top">
@@ -33,7 +33,7 @@ include_once 'head.php';
     <div class="w3-col s3">
      <form action="profile.php"  method="post">
      <?php echo "Hello,".$_SESSION['username']."!"; ?>
-    <input type="submit" name="log_out" value="LOG OUT">
+    <input type="submit" class="w3-button w3-teal" name="log_out" value="LOG OUT">
     </form>
     </div>
   </div>
@@ -67,11 +67,27 @@ include_once 'head.php';
       <p><button class="w3-button w3-black" type="submit" id="send">SEND MESSAGE</button></p>
     </form>
   </div>
-  <div class="w3-col m6 l6">
+  <div class="w3-col m5 l5">
     <div class="w3-content w3-row m6 l6" id="about" >
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">PEOPLE LEFT THE OPINION</span></h5>
-			
-
+    <h5 class="w3-center"><span class="w3-tag w3-wide">TALKPLACE STATISTICS</span></h5>
+                <table class="w3-table">
+                <tr >
+                  <th class=" w3-center">Quontity of users registered at TalkPlace:</th>
+                  <td id="users_quantity"></td>
+                </tr>
+                <tr>
+                  <th class=" w3-center">Quontity of posts currently at TalkPlace:</th>
+                  <td id="post_quantity"></td>
+                </tr>
+                 <tr>
+                  <th class=" w3-center">Last post was created at:</th>
+                  <td >Smith</td>
+                </tr>
+                 <tr>
+                  <th class=" w3-center">Current time:</th>
+                  <td >Smith</td>
+                </tr>
+                </table>	
 </div>
   </div>
 </div>
@@ -81,8 +97,7 @@ include_once 'head.php';
 <div class="w3-row w3-center">
   <div class="w3-col m12 l12">
    <div id="message_list">
-      
-       <?php
+                           <?php
 							$query = "SELECT p.name,p.message, u.image,p.created_at FROM posts AS p
                             INNER JOIN users AS u ON u.id=p.user_id
                             order BY p.id DESC LIMIT 3";
@@ -126,6 +141,7 @@ include_once 'head.php';
         success: function(data) {
             $('<div class="post_item">').html("<img width='40' src='"+"<?php echo $_SESSION['image']?>"+"'/><p>"+name+"</p><span>"+message+"</span><p>"+data['created_at']+"</p></div><hr>").prependTo('#message_list');
             limit+=1;
+            get_statistics();
         },
         error: function(result) {
             alert('error');
@@ -153,6 +169,23 @@ $(window).scroll(function() {
         limit+=3;
     }
 });
+</script>
+<script>
+function get_statistics(){
+      $.ajax({
+        type: "POST",
+        url: "get_statistics_ajax.php",
+        data: { 
+      
+        },
+        success: function(data) {
+            console.log(data);
+            $('#post_quantity').text(data['post_quantity']['post_quantity']);
+            $('#users_quantity').text(data['users_quantity']['users_quantity']);
+            }
+            
+        });
+}
 </script>
 </body>
 </html>

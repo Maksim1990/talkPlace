@@ -77,11 +77,11 @@ include_once 'head.php';
       ?>
 <title>Register</title>
 </head>
-<body>
+<body id="register">
 <div class="w3-row w3-padding-64">
   <div class="w3-col m3  w3-center"><p></p></div>
-  <div class="w3-col m6  w3-center">
-     <h1>QUICK REGISTRATION</h1>
+  <div class="w3-col m6  w3-center backLogin">
+     <h1 class="w3-text-white">QUICK REGISTRATION</h1>
 
         <form action="register.php" method="post" id="signupForm" enctype="multipart/form-data">
 
@@ -90,35 +90,35 @@ include_once 'head.php';
                 <input type="text" name="name" class="w3-input" maxlength="10" id="name" placeholder="Name..." required/>
             </div>
         </div>
-          
+            </br>
         <div class="formRow">
             <div class="field">
                 <input type="text" name="email" class="w3-input" id="email" placeholder="Email..." required/>
             </div>
         </div>
-
+            </br>
         <div class="formRow">
             <div class="field">
                 <input type="password" name="pass" class="w3-input" id="pass" placeholder="Password..." required/>
             </div>
         </div>
-        
+            </br>
          <div class="formRow">
             <div class="field">
                 <input type="password" name="pass2" class="w3-input" id="pass" placeholder="Repeat password..." required/>
             </div>
         </div>
-       
+               </br>
          <div class="formRow">
             <div class="label">
-                <label for="image">Profile image</label> <span class="redAt">*</span>
+                <label for="image" class="w3-text-white">Profile image</label> <span class="redAt">*</span>
             </div>
             
             <div class="field1 ">
                 <input  type="file" name="image" id="image"/>
             </div>
          
-             <p class="attention"> <span class="redAt">*</span>Attention: your picture must be less than 2 MB </p>   
+             <p class="attention w3-text-white"> <span class="redAt">*</span>Attention: your picture must be less than 2 MB </p>   
         </div>
     
     <div class="signupButton">

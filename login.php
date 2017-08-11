@@ -41,18 +41,19 @@ include_once 'head.php';
 ?>
 <title>Login</title>
 </head>
-<body>
+<body id="login">
 <div class="w3-row w3-padding-64">
   <div class="w3-col s4  w3-center"><p></p></div>
-  <div class="w3-col s4 w3-center">
-      <h1>LOGIN</h1>
+  <div class="w3-col s4 w3-center backLogin">
+      <h1 class="w3-text-white">LOGIN</h1>
 
         <form action="login.php" method="post" id="signupForm">
         <div class="formRow">
             <div class="field">
                 <input type="text" name="email" class="w3-input" id="email" placeholder="Email..." required/>
             </div>
-        </div>     
+        </div>    
+        <br/> 
         <div class="formRow">
  
             <div class="field">
@@ -64,7 +65,7 @@ include_once 'head.php';
           <button class="w3-button w3-teal" type="submit" name="submit" id="submit" value="Send_Mail" >Login</button>
     </div> 
     </form>
-   <p style="display:inline-block; float: left;"><a href="register.php">Register</a></p>
+   <p style="display:inline-block; float: left;" class="w3-text-white"><a href="register.php">Register</a></p>
   </div>
   <div class="w3-col s4 w3-center"></div>
 </div>

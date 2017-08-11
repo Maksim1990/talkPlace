@@ -8,6 +8,23 @@ body, html {
     background-image: url("/img/back.jpg");
     min-height: 95%;
 }
+#login{
+    background-position: center;
+    background-size: cover;
+    background-image: url("/img/register.jpg");
+    min-height: 95%;  
+}
+#register{
+    background-position: center;
+    background-size: cover;
+    background-image: url("/img/login.jpg");
+    min-height: 95%;  
+}
+.backLogin{
+padding-left: 15px;
+padding-right: 15px;
+background: rgba(54, 25, 25, .5);
+}
 .menu {
     display: none;
 }
