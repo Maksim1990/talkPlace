@@ -40,7 +40,7 @@ else{
        echo "<script>alert ('Email address".$email." is already registered')</script>";
    }
    else{ 
-   $created_at=  date('Y-m-d H:iS');
+   $created_at=  date('Y-m-d H:i:S');
    $query= pg_query("INSERT INTO users ( name, email, password,created_at, imname,image) VALUES('$username','$email','$password','$created_at','$name','$image')");
      // Login of the user
    $logins = "SELECT * FROM users WHERE email='$email' AND password='$password' AND name='$username'  LIMIT 1";

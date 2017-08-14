@@ -1,5 +1,7 @@
 <?php
 session_start(); 
+if(isset($_SESSION['username'])){
+
 // Connecting, selecting database
 $dbconn = pg_connect("host=localhost dbname=users user=postgres password=")
     or die('Could not connect: ' . pg_last_error());
@@ -42,16 +44,14 @@ include_once 'head.php';
 <!-- Links (sit on top) -->
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
-    <div class="w3-col s3">
+    <div class="w3-col s4">
       <a href="#" class="w3-button w3-block w3-black">HOME</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+    <div class="w3-col s4">
+      <a href="#about" class="w3-button w3-block w3-black">POSTS</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
-    </div>
-    <div class="w3-col s3">
+ 
+    <div class="w3-col s4">
      <form action="profile.php"  method="post">
      <?php echo "Hello,".$_SESSION['username']."!"; ?>
     <input type="submit" class="w3-button w3-teal" name="log_out" value="LOG OUT">
@@ -76,13 +76,12 @@ include_once 'head.php';
 
 <div class="w3-container" id="where" style="padding-bottom:32px;">
 
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
-    <p>Find us at some address at some place.</p>
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">BEST PLACE FOR SHARING YOUR IDEAS</span></h5>
 
    <div class="w3-row">
   <div class="w3-col m6 l6">
-   <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
-    <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
+   <p>Share your ideas with others and be familiar with what other people think and share. 
+    <p><strong>Type and post</strong> your message by using above form:</p>
     <form id="submitForm" >
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Type your message" id="message" required name="Message"></p>
       <p><button class="w3-button w3-black" type="submit" id="send">SEND MESSAGE</button></p>
@@ -217,3 +216,7 @@ function get_statistics(){
 </script>
 </body>
 </html>
+<?php
+    }else{
+    header("Location: login.php");
+}
